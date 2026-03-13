@@ -177,6 +177,7 @@
 
   #print-wrapper.print-active {
     display: block !important;
+    visibility: visible !important;
     background: white !important;
     padding: 0 !important;
     margin: 0 !important;
@@ -184,6 +185,7 @@
 
   #print-wrapper-cards.print-active {
     display: block !important;
+    visibility: visible !important;
     background: white !important;
   }
 

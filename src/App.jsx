@@ -166,13 +166,28 @@ export default function App() {
   const handlePrint = (mode) => {
     if (!selectedBooks.length) { toast.error('Add at least one book to print'); return; }
     setPrintMode(mode);
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        window.print();
-        setPrintMode(null);
-      });
-    });
   };
+
+  // ── Handle Printing Lifecycle ──
+  // Using useEffect + delays ensures mobile browsers correctly render the hidden items
+  // before the print dialog takes a snapshot of the screen.
+  useEffect(() => {
+    if (!printMode) return;
+
+    // Small delay to let the DOM settle and "print-active" styles kick in
+    const printTimer = setTimeout(() => {
+      window.print();
+      
+      // Delay resetting to prevent "blank screen" before the dialog fully opens
+      const resetTimer = setTimeout(() => {
+        setPrintMode(null);
+      }, 500);
+      
+      return () => clearTimeout(resetTimer);
+    }, 600);
+
+    return () => clearTimeout(printTimer);
+  }, [printMode]);
 
   // Format class_no: preserve all decimal digits (up to 9)
   const fmtNo = (val) => {
