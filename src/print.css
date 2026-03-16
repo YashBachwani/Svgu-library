@@ -1,62 +1,56 @@
 /* =============================
    SCREEN: Hide print wrappers
-   ============================= */
+============================= */
 #print-wrapper,
 #print-wrapper-cards {
   display: none;
 }
 
-/* ─── 7x3 Grid Layout for sheet stickers ─── */
-/* .print-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 63.5mm);
-  grid-template-rows: repeat(7, 38mm);
-  column-gap: 2.5mm;
-  row-gap: 0;
-  width: 195.5mm;
-  height: 266mm;
-  border: none;
-  background: white;
-  box-sizing: border-box;
-} */
+/* =============================
+   STICKER GRID (SCREEN + PRINT)
+============================= */
 
 .print-grid {
   display: grid;
+
   grid-template-columns: repeat(3, 63.5mm);
   grid-template-rows: repeat(7, 38mm);
-  column-gap: 2.5mm;
-  row-gap: 2.5mm;
-  width: 195.5mm;
-  height: 266mm;
-  border: none;
 
-}
+  column-gap: 3mm;   /* horizontal pitch correction */
+  row-gap: 0mm;      /* IMPORTANT – prevents vertical drift */
 
-.slip-cell {
+  width: 196.5mm;    /* (63.5*3)+(3*2 gaps) */
+  height: 266mm;     /* 38 * 7 */
+
   border: none;
-  padding: 2mm;
-  /* Consistent padding for centering */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  /* Vertical center */
-  align-items: center;
-  /* Horizontal center */
-  text-align: center;
-  /* Text alignment center */
-  font-family: 'Inter', sans-serif;
-  overflow: hidden;
   background: white;
+
   box-sizing: border-box;
 }
 
-/* .slip-cell {
-  padding: 0; 
+/* =============================
+   STICKER CONTENT
+============================= */
+
+.slip-cell {
+  border: none;
+
+  padding: 1.5mm;
+
   display: flex;
+  flex-direction: column;
+
   justify-content: center;
   align-items: center;
+
   text-align: center;
-} */
+
+  font-family: 'Inter', sans-serif;
+  overflow: hidden;
+  background: white;
+
+  box-sizing: border-box;
+}
 
 .slip-cell.filled {
   background: #f8fafc;
@@ -65,7 +59,8 @@
 .slip-field {
   font-size: 10pt;
   color: #334155;
-  line-height: 1.4;
+  line-height: 1.3;
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -84,7 +79,10 @@
   opacity: 0.2;
 }
 
-/* ─── Library Card (screen preview) ─── */
+/* =============================
+   LIBRARY CARD (SCREEN PREVIEW)
+============================= */
+
 .lib-card {
   width: 75mm;
   min-height: 120mm;
@@ -117,7 +115,7 @@
 }
 
 .card-label::after {
-  content: ' : ';
+  content: " : ";
 }
 
 .card-line {
@@ -148,11 +146,9 @@
 .card-table th {
   font-weight: 700;
   font-size: 7pt;
-  background: transparent;
 }
 
 .card-table td {
-  min-height: 6mm;
   height: 6mm;
 }
 
@@ -166,25 +162,27 @@
 
 .card-table-back td {
   height: 8mm;
-  min-height: 8mm;
 }
 
-/* ─── Card Print: Value-Only (hidden on screen) ─── */
+/* Hide card print version on screen */
+
 .card-print-values {
   display: none;
 }
 
 /* =============================
    PRINT STYLES
-   ============================= */
+============================= */
+
 @media print {
 
+  /* DO NOT CHANGE PAGE MARGINS */
   @page {
     size: A4 portrait;
     margin: 0 !important;
     padding-top: 15.5mm;
-    padding-left: 7.0mm;
-    padding-right: 7.0mm;
+    padding-left: 7mm;
+    padding-right: 7mm;
     padding-bottom: 15.5mm;
   }
 
@@ -211,8 +209,6 @@
     display: block !important;
     visibility: visible !important;
     background: white !important;
-    padding: 0 !important;
-    margin: 0 !important;
   }
 
   #print-wrapper-cards.print-active {
@@ -221,51 +217,63 @@
     background: white !important;
   }
 
-  /* ── Sheet Print Layout ── */
-
-  /* .print-page {
-    width: 210mm !important;
-    height: 297mm !important;
-    min-height: 297mm !important;
-    padding-top: 15.5mm !important;
-    padding-left: 7.0mm !important;
-    box-sizing: border-box !important;
-    page-break-after: always !important;
-    display: block !important;
-    margin: 0 !important;
-    background: white !important;
-  }
- */
+  /* PAGE LAYOUT */
 
   .print-page {
     width: 210mm;
     height: 297mm;
+
     padding-top: 15.5mm;
     padding-left: 7mm;
     padding-right: 7mm;
+
     box-sizing: border-box;
+
     page-break-after: always;
   }
 
+  /* GRID WRAPPER */
 
   .grid-scaler {
-    width: 195.5mm !important;
-    height: 266mm !important;
-    margin: 0 !important;
-    transform: none !important;
+    width: 196.5mm;
+    height: 266mm;
+
+    margin: 0;
+    transform: scale(1);
   }
 
+  /* STICKER GRID (PRINT SAFE) */
+
+  .print-grid {
+    display: grid !important;
+
+    grid-template-columns: repeat(3, 63.5mm) !important;
+    grid-template-rows: repeat(7, 38mm) !important;
+
+    column-gap: 3mm !important;
+    row-gap: 0mm !important;
+
+    width: 196.5mm !important;
+    height: 266mm !important;
+
+    margin: 0 !important;
+
+    page-break-inside: avoid;
+  }
+
+  /* PAGE BREAK */
+
   .print-page-break {
-    page-break-after: always !important;
-    break-after: page !important;
+    page-break-after: always;
+    break-after: page;
   }
 
   .print-page-break:last-child {
-    page-break-after: auto !important;
-    break-after: auto !important;
+    page-break-after: auto;
+    break-after: auto;
   }
 
-  /* ═════════ CARD PRINT VALUE ONLY ═════════ */
+  /* CARD PRINT VALUES */
 
   .card-page {
     display: flex;
@@ -277,51 +285,43 @@
 
   .card-print-values {
     display: block !important;
+
     position: relative;
+
     width: 75mm;
     height: 120mm;
-    background: transparent !important;
-    border: none !important;
+
+    border: none;
     box-sizing: border-box;
+
     font-family: 'Inter', sans-serif;
+
     color: #000;
+
     page-break-inside: avoid;
-    break-inside: avoid;
   }
 
   .cpv-line {
     position: absolute;
+
     left: 28mm;
     right: 4mm;
+
     font-size: 9pt;
     font-weight: 500;
+
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  .cpv-1 {
-    top: 5mm;
-  }
-
-  .cpv-2 {
-    top: 13mm;
-  }
-
-  .cpv-3 {
-    top: 21mm;
-  }
-
-  .cpv-4 {
-    top: 29mm;
-  }
-
-  .cpv-5 {
-    top: 41mm;
-  }
+  .cpv-1 { top: 5mm; }
+  .cpv-2 { top: 13mm; }
+  .cpv-3 { top: 21mm; }
+  .cpv-4 { top: 29mm; }
+  .cpv-5 { top: 41mm; }
 
   .lib-card {
     display: none !important;
   }
-
 }
