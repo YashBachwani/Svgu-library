@@ -9,10 +9,12 @@
 /* ─── 7x3 Grid Layout for sheet stickers ─── */
 .print-grid {
   display: grid;
-  grid-template-columns: repeat(3, 63.5mm);
-  grid-template-rows: repeat(7, 38mm);
-  width: 190.5mm;
-  height: 266mm;
+  grid-template-columns: repeat(3, 65mm);
+  /* sticker width */
+  grid-template-rows: repeat(7, 30mm);
+  /* sticker height */
+  width: 195mm;
+  height: 210mm;
   border: none;
   background: white;
   box-sizing: border-box;
@@ -20,7 +22,7 @@
 
 .slip-cell {
   border: none;
-  padding: 6px 14px;
+  padding: 10px 32px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -152,6 +154,7 @@
    PRINT STYLES
    ============================= */
 @media print {
+
   @page {
     size: A4 portrait;
     margin: 0 !important;
@@ -171,7 +174,6 @@
     display: none !important;
   }
 
-  /* Only show the wrapper that has print-active class */
   #print-wrapper,
   #print-wrapper-cards {
     display: none !important;
@@ -191,13 +193,14 @@
     background: white !important;
   }
 
-  /* ── Sheet Print: Exact Avery L7160 21-up layout ── */
+  /* ── Sheet Print Layout ── */
+
   .print-page {
     width: 210mm !important;
     height: 297mm !important;
     min-height: 297mm !important;
-    padding-top: 15.15mm !important;
-    padding-left: 7.2mm !important; /* Left margin for standard 21-up */
+    padding-top: 15mm !important;
+    padding-left: 7.5mm !important;
     box-sizing: border-box !important;
     page-break-after: always !important;
     display: block !important;
@@ -206,23 +209,26 @@
   }
 
   .grid-scaler {
-    width: 195.5mm !important; /* 63.5*3 + 2.5*2 */
-    height: 266.7mm !important; /* 38.1*7 */
+    width: 195mm !important;
+    height: 210mm !important;
     margin: 0 !important;
     transform: none !important;
   }
 
   .print-grid {
-    width: 195.5mm !important;
-    height: 266.7mm !important;
+    width: 195mm !important;
+    height: 210mm !important;
     border: none !important;
     background: white !important;
     display: grid !important;
-    grid-template-columns: repeat(3, 63.5mm) !important;
-    grid-template-rows: repeat(7, 38.1mm) !important;
-    page-break-inside: avoid !important;
-    column-gap: 2.5mm !important;
+
+    grid-template-columns: repeat(3, 65mm) !important;
+    grid-template-rows: repeat(7, 30mm) !important;
+
+    column-gap: 0 !important;
     row-gap: 0 !important;
+
+    page-break-inside: avoid !important;
     margin: 0 !important;
   }
 
@@ -244,7 +250,7 @@
     justify-content: center !important;
     align-items: flex-start !important;
     text-align: left !important;
-    padding: 4mm 8mm !important; /* Huge increase to left padding from 3mm to 8mm */
+    padding: 4mm 8mm !important;
     box-sizing: border-box !important;
   }
 
@@ -263,13 +269,8 @@
     font-weight: 700 !important;
   }
 
-  /* ══════════════════════════════════════════
-     CARD PRINT: VALUE-ONLY
-     The physical card already has labels, lines,
-     and the borrower table pre-printed.
-     We only print the 5 data values positioned
-     to land on the correct lines.
-     ══════════════════════════════════════════ */
+  /* ═════════ CARD PRINT VALUE ONLY ═════════ */
+
   .card-page {
     display: flex;
     flex-wrap: wrap;
@@ -292,12 +293,6 @@
     break-inside: avoid;
   }
 
-  /*
-   * Each .cpv-line is absolutely positioned to land
-   * on the matching pre-printed label line.
-   * The 'left' offset skips past the label text.
-   * Adjust these values if alignment is off after test print.
-   */
   .cpv-line {
     position: absolute;
     left: 28mm;
@@ -309,35 +304,28 @@
     text-overflow: ellipsis;
   }
 
-  /* Vertical positions for each field on the card */
   .cpv-1 {
     top: 5mm;
   }
 
-  /* Class No. */
   .cpv-2 {
     top: 13mm;
   }
 
-  /* Book No. */
   .cpv-3 {
     top: 21mm;
   }
 
-  /* Accession No. */
   .cpv-4 {
     top: 29mm;
   }
 
-  /* Title */
   .cpv-5 {
     top: 41mm;
   }
 
-  /* Author (after spacer) */
-
-  /* Hide the preview-only card elements when printing */
   .lib-card {
     display: none !important;
   }
+
 }
