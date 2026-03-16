@@ -9,12 +9,12 @@
 /* ─── 7x3 Grid Layout for sheet stickers ─── */
 .print-grid {
   display: grid;
-  grid-template-columns: repeat(3, 65mm);
-  /* sticker width */
-  grid-template-rows: repeat(7, 30mm);
-  /* sticker height */
-  width: 195mm;
-  height: 210mm;
+  grid-template-columns: repeat(3, 63.5mm);
+  grid-template-rows: repeat(7, 38mm);
+  column-gap: 2.5mm;
+  row-gap: 0;
+  width: 195.5mm;
+  height: 266.7mm;
   border: none;
   background: white;
   box-sizing: border-box;
@@ -22,7 +22,7 @@
 
 .slip-cell {
   border: none;
-  padding: 10px 32px;
+  padding: 4mm 8mm; /* Keep decent inner padding */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -199,8 +199,8 @@
     width: 210mm !important;
     height: 297mm !important;
     min-height: 297mm !important;
-    padding-top: 15mm !important;
-    padding-left: 7.5mm !important;
+    padding-top: 15.2mm !important;
+    padding-left: 9.2mm !important;
     box-sizing: border-box !important;
     page-break-after: always !important;
     display: block !important;
@@ -209,27 +209,10 @@
   }
 
   .grid-scaler {
-    width: 195mm !important;
-    height: 210mm !important;
+    width: 195.5mm !important;
+    height: 266.7mm !important;
     margin: 0 !important;
     transform: none !important;
-  }
-
-  .print-grid {
-    width: 195mm !important;
-    height: 210mm !important;
-    border: none !important;
-    background: white !important;
-    display: grid !important;
-
-    grid-template-columns: repeat(3, 65mm) !important;
-    grid-template-rows: repeat(7, 30mm) !important;
-
-    column-gap: 0 !important;
-    row-gap: 0 !important;
-
-    page-break-inside: avoid !important;
-    margin: 0 !important;
   }
 
   .print-page-break {
@@ -240,33 +223,6 @@
   .print-page-break:last-child {
     page-break-after: auto !important;
     break-after: auto !important;
-  }
-
-  .slip-cell {
-    border: none !important;
-    background: white !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: flex-start !important;
-    text-align: left !important;
-    padding: 4mm 8mm !important;
-    box-sizing: border-box !important;
-  }
-
-  .slip-cell.filled {
-    background: white !important;
-  }
-
-  .slip-field {
-    font-size: 10pt !important;
-    color: #000 !important;
-    display: block !important;
-  }
-
-  .slip-field-first {
-    font-size: 11pt !important;
-    font-weight: 700 !important;
   }
 
   /* ═════════ CARD PRINT VALUE ONLY ═════════ */
