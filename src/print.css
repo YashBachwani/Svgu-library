@@ -191,13 +191,13 @@
     background: white !important;
   }
 
-  /* ── Sheet Print ── */
+  /* ── Sheet Print: Exact Avery L7160 21-up layout ── */
   .print-page {
     width: 210mm !important;
     height: 297mm !important;
     min-height: 297mm !important;
-    padding-top: 15.5mm !important;
-    padding-left: 9.75mm !important;
+    padding-top: 15.15mm !important;
+    padding-left: 7.2mm !important; /* Left margin for standard 21-up */
     box-sizing: border-box !important;
     page-break-after: always !important;
     display: block !important;
@@ -206,22 +206,23 @@
   }
 
   .grid-scaler {
-    width: 190.5mm !important;
-    height: 266mm !important;
+    width: 195.5mm !important; /* 63.5*3 + 2.5*2 */
+    height: 266.7mm !important; /* 38.1*7 */
     margin: 0 !important;
     transform: none !important;
   }
 
   .print-grid {
-    width: 190.5mm !important;
-    height: 266mm !important;
+    width: 195.5mm !important;
+    height: 266.7mm !important;
     border: none !important;
     background: white !important;
     display: grid !important;
     grid-template-columns: repeat(3, 63.5mm) !important;
-    grid-template-rows: repeat(7, 38mm) !important;
+    grid-template-rows: repeat(7, 38.1mm) !important;
     page-break-inside: avoid !important;
-    gap: 0 !important;
+    column-gap: 2.5mm !important;
+    row-gap: 0 !important;
     margin: 0 !important;
   }
 
