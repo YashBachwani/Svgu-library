@@ -720,13 +720,14 @@ body {
 .grid-scaler {
   transform-origin: top left;
   width: 195.5mm;
-  height: 266.7mm;
+  height: 266mm;
 }
 
 /* Slot empty number */
 .slip-empty-num {
   color: #ccc;
   font-size: 10pt;
+  margin: 0 auto;
 }
 
 /* Chip section */
