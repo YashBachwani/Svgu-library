@@ -22,7 +22,8 @@
 
 .slip-cell {
   border: none;
-  padding: 4mm 8mm; /* Keep decent inner padding */
+  padding: 4mm 8mm;
+  /* Keep decent inner padding */
   display: flex;
   flex-direction: column;
   justify-content: center;
