@@ -9,17 +9,17 @@
 /* ─── 7x3 Grid Layout for sheet stickers ─── */
 .print-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(7, 1fr);
-  width: 190mm;
-  height: 277mm;
-  border: 1.5px solid #cbd5e1;
+  grid-template-columns: repeat(3, 63.5mm);
+  grid-template-rows: repeat(7, 38mm);
+  width: 190.5mm;
+  height: 266mm;
+  border: none;
   background: white;
   box-sizing: border-box;
 }
 
 .slip-cell {
-  border: 1px solid #e2e8f0;
+  border: none;
   padding: 6px 14px;
   display: flex;
   flex-direction: column;
@@ -154,7 +154,7 @@
 @media print {
   @page {
     size: A4 portrait;
-    margin: 10mm;
+    margin: 15.5mm 9.75mm;
   }
 
   html,
@@ -191,13 +191,13 @@
 
   /* ── Sheet Print ── */
   .print-grid {
-    width: 190mm !important;
-    height: 277mm !important;
-    border: 1.5px solid #000 !important;
+    width: 190.5mm !important;
+    height: 266mm !important;
+    border: none !important;
     background: white !important;
     display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important;
-    grid-template-rows: repeat(7, 1fr) !important;
+    grid-template-columns: repeat(3, 63.5mm) !important;
+    grid-template-rows: repeat(7, 38mm) !important;
     page-break-inside: avoid !important;
   }
 
@@ -212,7 +212,7 @@
   }
 
   .slip-cell {
-    border: 1px solid #444 !important;
+    border: none !important;
     background: white !important;
     display: flex !important;
     flex-direction: column !important;

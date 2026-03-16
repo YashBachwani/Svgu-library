@@ -48,12 +48,14 @@ export default function App() {
   const normalizeRow = (row) => {
     const norm = {};
     for (const [k, v] of Object.entries(row)) {
-      const key = k.trim().toLowerCase();
-      if (key === 'title') norm.title = v;
-      else if (key === 'author' || key === 'authors') norm.author = v;
-      else if (key === 'class no' || key === 'class_no' || key === 'classno') norm.class_no = v;
-      else if (key === 'book no' || key === 'book_no' || key === 'bookno') norm.book_no = v;
-      else if (key === 'acc no' || key === 'acc_no' || key === 'accno' || key === 'accession_no' || key === 'accession no') norm.acc_no = v;
+      // Create a super-normalized key: lowercase and ONLY letters/numbers
+      const key = k.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
+      
+      if (key.includes('title')) norm.title = String(v).trim();
+      else if (key.includes('author')) norm.author = String(v).trim();
+      else if (key.includes('class')) norm.class_no = String(v).trim();
+      else if (key.includes('book')) norm.book_no = String(v).trim();
+      else if (key.includes('acc')) norm.acc_no = String(v).trim();
       else norm[k] = v; // keep unknown cols as-is
     }
     return norm;
@@ -66,7 +68,7 @@ export default function App() {
     reader.onload = (evt) => {
       try {
         const wb = XLSX.read(evt.target.result, { type: 'binary' });
-        const raw = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
+        const raw = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]], { raw: false, defval: '' });
         const data = raw.map(normalizeRow);
         if (data.length > 0) {
           setBooks(data);
@@ -189,12 +191,18 @@ export default function App() {
     return () => clearTimeout(printTimer);
   }, [printMode]);
 
-  // Format class_no: preserve all decimal digits (up to 9)
+  // Format class_no: Force 3-digit integer padding for Dewey decimals (e.g. 6.7 -> 006.7)
   const fmtNo = (val) => {
+    if (val === undefined || val === null || val === '') return '';
     const s = String(val);
-    const d = s.indexOf('.');
-    if (d === -1) return s;
-    return s.slice(0, d) + '.' + s.slice(d + 1);
+    const parts = s.split('.');
+    
+    // Only pad if the first part is purely numeric (e.g. Dewey class numbers)
+    if (/^\d+$/.test(parts[0])) {
+      parts[0] = parts[0].padStart(3, '0');
+    }
+    
+    return parts.join('.');
   };
 
   // Get display value for book

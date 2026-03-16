@@ -1,0 +1,106 @@
+DEFAULT:
+[
+  {
+    "Title": "Book 1",
+    "Author": "Author A",
+    "Class No": "006.7",
+    "book no": "2177BCA",
+    "Acc NO": "123"
+  },
+  {
+    "Title": "Book 2",
+    "Author": "Author B",
+    "Class No": "005.13",
+    "book no": "2178BCA",
+    "Acc NO": "124"
+  },
+  {
+    "Title": "Book 3",
+    "Author": "Author C",
+    "Class No": 6.7,
+    "book no": "300",
+    "Acc NO": "125"
+  }
+]
+
+RAW: FALSE:
+[
+  {
+    "Title": "Book 1",
+    "Author": "Author A",
+    "Class No": "006.7",
+    "book no": "2177BCA",
+    "Acc NO": "123"
+  },
+  {
+    "Title": "Book 2",
+    "Author": "Author B",
+    "Class No": "005.13",
+    "book no": "2178BCA",
+    "Acc NO": "124"
+  },
+  {
+    "Title": "Book 3",
+    "Author": "Author C",
+    "Class No": "6.7",
+    "book no": "300",
+    "Acc NO": "125"
+  }
+]
+
+RAW: STRING (defval: ''):
+[
+  {
+    "Title": "Book 1",
+    "Author": "Author A",
+    "Class No": "006.7",
+    "book no": "2177BCA",
+    "Acc NO": "123"
+  },
+  {
+    "Title": "Book 2",
+    "Author": "Author B",
+    "Class No": "005.13",
+    "book no": "2178BCA",
+    "Acc NO": "124"
+  },
+  {
+    "Title": "Book 3",
+    "Author": "Author C",
+    "Class No": "6.7",
+    "book no": "300",
+    "Acc NO": "125"
+  }
+]
+
+HEADER mapping: 
+[
+  [
+    "Title",
+    "Author",
+    "Class No",
+    "book no",
+    "Acc NO"
+  ],
+  [
+    "Book 1",
+    "Author A",
+    "006.7",
+    "2177BCA",
+    "123"
+  ],
+  [
+    "Book 2",
+    "Author B",
+    "005.13",
+    "2178BCA",
+    "124"
+  ],
+  [
+    "Book 3",
+    "Author C",
+    6.7,
+    "300",
+    "125"
+  ]
+]

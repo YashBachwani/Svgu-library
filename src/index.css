@@ -719,8 +719,8 @@ body {
 
 .grid-scaler {
   transform-origin: top left;
-  width: 190mm;
-  height: 277mm;
+  width: 190.5mm;
+  height: 266mm;
 }
 
 /* Slot empty number */
