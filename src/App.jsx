@@ -234,7 +234,7 @@ export default function App() {
         SVGU LIBRARY
       </div>
     );
-    return rows;
+    return <div className="slip-content-wrapper">{rows}</div>;
   };
 
   // Highlight search
