@@ -246,7 +246,7 @@
 
   :root {
     --print-offset-x: 2mm;
-    --print-offset-y: 40mm;
+    --print-offset-y: 100mm;
   }
 
   /* GRID WRAPPER */
