@@ -842,7 +842,7 @@ body {
   transform-origin: top left;
   width: 75mm;
   /* push parent height up to match visual height (120mm × scale) */
-  margin-bottom: calc(120mm * 0.62 - 120mm);
+  margin-bottom: calc(120mm * 0.62 - 120mm + 20px);
 }
 
 /* ── Tablet (≤900px): scale 0.50 ── */
@@ -851,7 +851,7 @@ body {
   .card-preview-item { width: calc(75mm * 0.50); }
   .card-preview-scaler {
     transform: scale(0.50);
-    margin-bottom: calc(120mm * 0.50 - 120mm);
+    margin-bottom: calc(120mm * 0.50 - 120mm + 20px);
   }
 }
 
@@ -861,7 +861,7 @@ body {
   .card-preview-item { width: calc(75mm * 0.40); }
   .card-preview-scaler {
     transform: scale(0.40);
-    margin-bottom: calc(120mm * 0.40 - 120mm);
+    margin-bottom: calc(120mm * 0.40 - 120mm + 20px);
   }
 }
 
@@ -1099,7 +1099,7 @@ body {
   .grid-scaler {
     transform: scale(0.45);
     transform-origin: top left;
-    margin-bottom: calc((277mm * 0.45) - 277mm);
+    margin-bottom: calc((277mm * 0.45) - 277mm + 20px);
   }
 
   .app-footer {
@@ -1149,7 +1149,7 @@ body {
   .grid-scaler {
     transform: scale(0.33);
     transform-origin: top left;
-    margin-bottom: calc((277mm * 0.33) - 277mm);
+    margin-bottom: calc((277mm * 0.33) - 277mm + 20px);
   }
 
   .chip-name {
@@ -1181,7 +1181,7 @@ body {
   .grid-scaler {
     transform: scale(0.72);
     transform-origin: top left;
-    margin-bottom: calc((277mm * 0.72) - 277mm);
+    margin-bottom: calc((277mm * 0.72) - 277mm + 20px);
   }
 }
 
@@ -1190,6 +1190,6 @@ body {
   .grid-scaler {
     transform: scale(0.58);
     transform-origin: top left;
-    margin-bottom: calc((277mm * 0.58) - 277mm);
+    margin-bottom: calc((277mm * 0.58) - 277mm + 20px);
   }
 }

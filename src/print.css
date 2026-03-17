@@ -16,11 +16,15 @@
   grid-template-columns: repeat(3, 63.5mm);
   grid-template-rows: repeat(7, 38mm);
 
-  column-gap: 3mm;   /* horizontal pitch correction */
-  row-gap: 0mm;      /* IMPORTANT – prevents vertical drift */
+  column-gap: 5mm;
+  /* horizontal pitch correction */
+  row-gap: 2mm;
+  /* IMPORTANT – prevents vertical drift */
 
-  width: 196.5mm;    /* (63.5*3)+(3*2 gaps) */
-  height: 266mm;     /* 38 * 7 */
+  width: 196.5mm;
+  /* (63.5*3)+(3*2 gaps) */
+  height: 266mm;
+  /* 38 * 7 */
 
   border: none;
   background: white;
@@ -35,7 +39,7 @@
 .slip-cell {
   border: none;
 
-  padding: 1.5mm;
+  padding: 5mm;
 
   display: flex;
   flex-direction: column;
@@ -232,6 +236,12 @@
     page-break-after: always;
   }
 
+
+  :root {
+    --print-offset-x: 2mm;
+    --print-offset-y: 3mm;
+  }
+
   /* GRID WRAPPER */
 
   .grid-scaler {
@@ -239,7 +249,7 @@
     height: 266mm;
 
     margin: 0;
-    transform: scale(1);
+    transform: translate(var(--print-offset-x), var(--print-offset-y));
   }
 
   /* STICKER GRID (PRINT SAFE) */
@@ -315,11 +325,25 @@
     text-overflow: ellipsis;
   }
 
-  .cpv-1 { top: 5mm; }
-  .cpv-2 { top: 13mm; }
-  .cpv-3 { top: 21mm; }
-  .cpv-4 { top: 29mm; }
-  .cpv-5 { top: 41mm; }
+  .cpv-1 {
+    top: 5mm;
+  }
+
+  .cpv-2 {
+    top: 13mm;
+  }
+
+  .cpv-3 {
+    top: 21mm;
+  }
+
+  .cpv-4 {
+    top: 29mm;
+  }
+
+  .cpv-5 {
+    top: 41mm;
+  }
 
   .lib-card {
     display: none !important;

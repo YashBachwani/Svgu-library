@@ -462,7 +462,7 @@ export default function App() {
                 </div>
                 {/* Page navigation bar — below the grid */}
                 {totalPages > 1 && (
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', marginTop: '14px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', marginTop: '40px' }}>
                     <button
                       onClick={() => setCurrentPage(p => Math.max(0, p - 1))}
                       disabled={currentPage === 0}
@@ -523,7 +523,7 @@ export default function App() {
                 </div>
                 {/* Arrow nav — below the row */}
                 {totalCardRows > 1 && (
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', marginTop: '14px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', marginTop: '40px' }}>
                     <button
                       onClick={() => setCardPage(p => Math.max(0, p - 1))}
                       disabled={cardPage === 0}
