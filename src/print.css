@@ -39,7 +39,7 @@
 .slip-cell {
   border: none;
 
-  padding: 5mm;
+  padding: 3mm 5mm; /* reduced top/bottom padding so text isn't stuck to edge */
 
   display: flex;
   flex-direction: column;
@@ -63,8 +63,10 @@
 .slip-content-wrapper {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: flex-start;
   text-align: left;
+  gap: 1mm; /* gives rows distinct height from each other */
 }
 
 .slip-field {
@@ -246,7 +248,7 @@
 
   :root {
     --print-offset-x: 2mm;
-    --print-offset-y: 12mm;
+    --print-offset-y: 10mm;
   }
 
   /* GRID WRAPPER */
