@@ -268,7 +268,7 @@
     grid-template-rows: repeat(7, 38.1mm) !important;
 
     column-gap: 2.5mm !important;
-    row-gap: 0.5mm !important;
+    row-gap: 0.3mm !important;
 
     width: 196.5mm !important;
     height: auto !important;
