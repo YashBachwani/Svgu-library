@@ -291,6 +291,16 @@
     margin-top: -3mm !important; /* Adjust this value to raise/lower just the second row */
   }
 
+  /* Target Row 6 (cells 16, 17, 18) */
+  .print-grid > .slip-cell:nth-child(n+16):nth-child(-n+18) {
+    margin-top: 2mm !important; /* Adjust this value for the 6th row */
+  }
+
+  /* Target Row 7 (cells 19, 20, 21) */
+  .print-grid > .slip-cell:nth-child(n+19):nth-child(-n+21) {
+    margin-top: 4mm !important;  /* Adjust this value for the 7th row */
+  }
+
   /* PAGE BREAK */
 
   .print-page-break {
