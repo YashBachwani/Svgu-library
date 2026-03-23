@@ -223,7 +223,7 @@ export default function App() {
     const rows = orderedKeys.map((key, idx) => {
       const value = getVal(book, key);
       return (
-        <div key={key} className={idx === 0 ? 'slip-field slip-field-first' : 'slip-field'}>
+        <div key={key} className="slip-field">
           {value}
         </div>
       );
