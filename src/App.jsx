@@ -279,23 +279,28 @@ export default function App() {
   }, [selectedBooks, filled]);
 
   // ── Card component (for screen preview & print) ──
-  const LibraryCard = ({ book }) => (
-    <div className="lib-card-new">
-      <div className="lcn-header">
-        <span className="lcn-dept">{getVal(book, 'department')}</span>
-        <span className="lcn-acc">{getVal(book, 'acc_no')}</span>
+  const LibraryCard = ({ book }) => {
+    const title = getVal(book, 'title');
+    const isLongTitle = title.length > 35;
+    
+    return (
+      <div className="lib-card-new">
+        <div className="lcn-header">
+          <span className="lcn-dept">{getVal(book, 'department')}</span>
+          <span className="lcn-acc">{getVal(book, 'acc_no')}</span>
+        </div>
+        <div className="lcn-classbook">
+          {getVal(book, 'class_no')}({getVal(book, 'book_no')})
+        </div>
+        <div className={`lcn-title ${isLongTitle ? 'lcn-title-small' : ''}`}>
+          {title}
+        </div>
+        <div className="lcn-author">
+          {getVal(book, 'author')}
+        </div>
       </div>
-      <div className="lcn-classbook">
-        {getVal(book, 'class_no')}({getVal(book, 'book_no')})
-      </div>
-      <div className="lcn-title">
-        {getVal(book, 'title')}
-      </div>
-      <div className="lcn-author">
-        {getVal(book, 'author')}
-      </div>
-    </div>
-  );
+    );
+  };
 
 
   return (
@@ -654,7 +659,7 @@ export default function App() {
             <div className="footer-line-decor" />
             <p className="footer-tagline">Designed &amp; Developed by</p>
             <h3 className="footer-dev-name">Yash Bachwani</h3>
-            <p className="footer-org">SVGU College Library · v2.1</p>
+            <p className="footer-org">SVGU College Library · v2.1.2</p>
           </div>
         </footer>
       </div>
