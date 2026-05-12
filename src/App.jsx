@@ -22,13 +22,13 @@ export default function App() {
   const [cardPage, setCardPage] = useState(0);
   const [listPage, setListPage] = useState(0);
   const [preloading, setPreloading] = useState(true);  // true=visible, false=hidden
-  const [hiding, setHiding]       = useState(false);   // triggers fade-out class
+  const [hiding, setHiding] = useState(false);   // triggers fade-out class
   const searchRef = useRef(null);
 
   // Auto-dismiss preloader after 2.3s (fade-out starts at 2.3s, unmounts at 2.85s)
   useEffect(() => {
-    const fadeTimer  = setTimeout(() => setHiding(true),     2300);
-    const killTimer  = setTimeout(() => setPreloading(false), 2850);
+    const fadeTimer = setTimeout(() => setHiding(true), 2300);
+    const killTimer = setTimeout(() => setPreloading(false), 2850);
     return () => { clearTimeout(fadeTimer); clearTimeout(killTimer); };
   }, []);
 
@@ -50,12 +50,13 @@ export default function App() {
     for (const [k, v] of Object.entries(row)) {
       // Create a super-normalized key: lowercase and ONLY letters/numbers
       const key = k.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
-      
+
       if (key.includes('title')) norm.title = String(v).trim();
       else if (key.includes('author')) norm.author = String(v).trim();
       else if (key.includes('class')) norm.class_no = String(v).trim();
       else if (key.includes('book')) norm.book_no = String(v).trim();
       else if (key.includes('acc')) norm.acc_no = String(v).trim();
+      else if (key.includes('department') || key.includes('dept')) norm.department = String(v).trim();
       else norm[k] = v; // keep unknown cols as-is
     }
     return norm;
@@ -179,12 +180,12 @@ export default function App() {
     // Small delay to let the DOM settle and "print-active" styles kick in
     const printTimer = setTimeout(() => {
       window.print();
-      
+
       // Delay resetting to prevent "blank screen" before the dialog fully opens
       const resetTimer = setTimeout(() => {
         setPrintMode(null);
       }, 500);
-      
+
       return () => clearTimeout(resetTimer);
     }, 600);
 
@@ -196,12 +197,12 @@ export default function App() {
     if (val === undefined || val === null || val === '') return '';
     const s = String(val);
     const parts = s.split('.');
-    
+
     // Only pad if the first part is purely numeric (e.g. Dewey class numbers)
     if (/^\d+$/.test(parts[0])) {
       parts[0] = parts[0].padStart(3, '0');
     }
-    
+
     return parts.join('.');
   };
 
@@ -217,18 +218,28 @@ export default function App() {
   };
 
   // Render slip fields for sheet print:
-  // Order: class_no → book_no → acc_no → SVGU LIBRARY (hardcoded last)
+  // Order: department → (gap) → class_no → book_no → acc_no → (gap) → SVGU LIBRARY(Default)
   const renderSlipFields = (book) => {
+    const rows = [];
+
+    rows.push(
+      <div key="dept" className="slip-field" style={{ marginTop: '1mm', marginBottom: '2mm' }}>
+        {getVal(book, 'department') || '\u00A0'}
+      </div>
+    );
+
     const orderedKeys = ['class_no', 'book_no', 'acc_no'];
-    const rows = orderedKeys.map((key, idx) => {
+    orderedKeys.forEach((key) => {
       const value = getVal(book, key);
-      return (
+      rows.push(
         <div key={key} className="slip-field">
-          {value}
+          {value || '\u00A0'}
         </div>
       );
     });
-    // Always append SVGU LIBRARY as last line
+
+
+
     rows.push(
       <div key="lib" className="slip-field">
         SVGU LIBRARY
@@ -654,7 +665,7 @@ export default function App() {
             <div className="footer-line-decor" />
             <p className="footer-tagline">Designed &amp; Developed by</p>
             <h3 className="footer-dev-name">Yash Bachwani</h3>
-            <p className="footer-org">SVGU College Library · v1.0</p>
+            <p className="footer-org">SVGU College Library · v2.0</p>
           </div>
         </footer>
       </div>
