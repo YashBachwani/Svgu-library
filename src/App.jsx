@@ -269,47 +269,34 @@ export default function App() {
     return pages;
   }, [selectedBooks, filled]);
 
-  // ── Card component (for screen preview) ──
-  // Order: class_no → book_no → acc_no → title → author
+  // ── Build paginated card pages (each 9 cards) ──
+  const cardPages = useMemo(() => {
+    const pages = [];
+    for (let i = 0; i < filled; i += 9) {
+      pages.push(selectedBooks.slice(i, i + 9));
+    }
+    return pages;
+  }, [selectedBooks, filled]);
+
+  // ── Card component (for screen preview & print) ──
   const LibraryCard = ({ book }) => (
-    <div className="lib-card">
-      <div className="card-fields">
-        <div className="card-row"><span className="card-label">Class No.</span><span className="card-line">{getVal(book, 'class_no')}</span></div>
-        <div className="card-row"><span className="card-label">Book No.</span><span className="card-line">{getVal(book, 'book_no')}</span></div>
-        <div className="card-row"><span className="card-label">Acc No.</span><span className="card-line">{getVal(book, 'acc_no')}</span></div>
-        <div className="card-row"><span className="card-label">Title</span><span className="card-line">{getVal(book, 'title')}</span></div>
-        <div className="card-spacer" />
-        <div className="card-row"><span className="card-label">Author</span><span className="card-line">{getVal(book, 'author')}</span></div>
+    <div className="lib-card-new">
+      <div className="lcn-header">
+        <span className="lcn-dept">{getVal(book, 'department')}</span>
+        <span className="lcn-acc">{getVal(book, 'acc_no')}</span>
       </div>
-      <table className="card-table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Issue Date</th>
-            <th>Membership No.</th>
-            <th>Sign.</th>
-          </tr>
-        </thead>
-        <tbody>
-          {Array.from({ length: 5 }).map((_, r) => (
-            <tr key={r}><td>&nbsp;</td><td></td><td></td><td></td></tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="lcn-classbook">
+        {getVal(book, 'class_no')}({getVal(book, 'book_no')})
+      </div>
+      <div className="lcn-title">
+        {getVal(book, 'title')}
+      </div>
+      <div className="lcn-author">
+        {getVal(book, 'author')}
+      </div>
     </div>
   );
 
-  // ── Card for PRINT: values only (no labels/borders/table) ──
-  // Order: class_no → book_no → acc_no → title → author
-  const LibraryCardPrint = ({ book }) => (
-    <div className="card-print-values">
-      <div className="cpv-line cpv-1">{getVal(book, 'class_no')}</div>
-      <div className="cpv-line cpv-2">{getVal(book, 'book_no')}</div>
-      <div className="cpv-line cpv-3">{getVal(book, 'acc_no')}</div>
-      <div className="cpv-line cpv-4">{getVal(book, 'title')}</div>
-      <div className="cpv-line cpv-5">{getVal(book, 'author')}</div>
-    </div>
-  );
 
   return (
     <>
@@ -356,13 +343,15 @@ export default function App() {
         ))}
       </div>
 
-      {/* ── PRINT-ONLY: CARD MODE — values only, no labels/borders ── */}
+      {/* ── PRINT-ONLY: CARD MODE — 3x3 grids on A4 ── */}
       <div id="print-wrapper-cards" className={printMode === 'card' ? 'print-active' : ''}>
-        <div className="card-page">
-          {selectedBooks.map((book, i) => (
-            <LibraryCardPrint key={`print-${i}`} book={book} />
-          ))}
-        </div>
+        {cardPages.map((page, pageIdx) => (
+          <div key={`cpage-${pageIdx}`} className="card-print-page print-page-break">
+            {page.map((book, i) => (
+              <LibraryCard key={`print-${pageIdx}-${i}`} book={book} />
+            ))}
+          </div>
+        ))}
       </div>
 
       {/* ── MAIN UI ──────────────────────────────── */}
@@ -665,7 +654,7 @@ export default function App() {
             <div className="footer-line-decor" />
             <p className="footer-tagline">Designed &amp; Developed by</p>
             <h3 className="footer-dev-name">Yash Bachwani</h3>
-            <p className="footer-org">SVGU College Library · v2.0</p>
+            <p className="footer-org">SVGU College Library · v2.1</p>
           </div>
         </footer>
       </div>

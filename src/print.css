@@ -96,93 +96,39 @@
    LIBRARY CARD (SCREEN PREVIEW)
 ============================= */
 
-.lib-card {
-  width: 75mm;
-  min-height: 120mm;
+.lib-card-new {
+  width: 64mm;
+  height: 85mm;
   background: white;
-  border: 1.5px solid #222;
-  padding: 6mm 5mm 4mm;
+  border: 1px solid #000;
+  padding: 4mm;
   font-family: 'Inter', sans-serif;
   box-sizing: border-box;
   color: #111;
-  font-size: 9pt;
-}
-
-.card-fields {
-  margin-bottom: 4mm;
-}
-
-.card-row {
-  display: flex;
-  align-items: baseline;
-  margin-bottom: 3mm;
-  border-bottom: 1px solid #333;
-  padding-bottom: 1mm;
-}
-
-.card-label {
-  font-weight: 700;
-  white-space: nowrap;
-  min-width: 22mm;
-  font-size: 8.5pt;
-}
-
-.card-label::after {
-  content: " : ";
-}
-
-.card-line {
-  flex: 1;
-  font-size: 9pt;
-  white-space: nowrap;
+  font-size: 11pt;
+  line-height: 1.4;
+  page-break-inside: avoid;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
-.card-spacer {
-  height: 3mm;
+.lcn-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2mm;
+  font-size: 12pt;
 }
 
-.card-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 7.5pt;
+.lcn-classbook {
+  margin-bottom: 2mm;
 }
 
-.card-table th,
-.card-table td {
-  border: 1px solid #333;
-  padding: 2mm 1.5mm;
-  text-align: center;
+.lcn-title {
+  margin-bottom: 2mm;
 }
 
-.card-table th {
-  font-weight: 700;
-  font-size: 7pt;
+.lcn-author {
+  margin-bottom: 2mm;
 }
-
-.card-table td {
-  height: 6mm;
-}
-
-.card-table-back {
-  margin-top: 0;
-}
-
-.card-table-back th {
-  border-top: 1.5px solid #333;
-}
-
-.card-table-back td {
-  height: 8mm;
-}
-
-/* Hide card print version on screen */
-
-.card-print-values {
-  display: none;
-}
-
 /* =============================
    PRINT STYLES
 ============================= */
@@ -320,67 +266,16 @@
 
   /* CARD PRINT VALUES */
 
-  .card-page {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0;
-    justify-content: flex-start;
-    align-content: flex-start;
+  .card-print-page {
+    display: grid !important;
+    grid-template-columns: repeat(3, 64mm);
+    grid-template-rows: repeat(3, 85mm);
+    justify-content: center;
+    align-content: start;
+    gap: 5mm;
   }
 
-  .card-print-values {
-    display: block !important;
-
-    position: relative;
-
-    width: 75mm;
-    height: 120mm;
-
-    border: none;
-    box-sizing: border-box;
-
-    font-family: 'Inter', sans-serif;
-
-    color: #000;
-
-    page-break-inside: avoid;
-  }
-
-  .cpv-line {
-    position: absolute;
-
-    left: 28mm;
-    right: 4mm;
-
-    font-size: 9pt;
-    font-weight: 500;
-
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .cpv-1 {
-    top: 5mm;
-  }
-
-  .cpv-2 {
-    top: 13mm;
-  }
-
-  .cpv-3 {
-    top: 21mm;
-  }
-
-  .cpv-4 {
-    top: 29mm;
-  }
-
-  .cpv-5 {
-    top: 41mm;
-  }
-
-  .lib-card {
-    display: none !important;
+  .lib-card-new {
+    border: 1px solid #000;
   }
 }
