@@ -97,8 +97,8 @@
 ============================= */
 
 .lib-card-new {
-  width: 60mm;
-  height: 88mm;
+  width: 64mm;
+  height: 92mm;
   background: white;
   border: 1px solid #000;
   padding: 2.5mm;
@@ -273,11 +273,11 @@
 
   .card-print-page {
     display: grid !important;
-    grid-template-columns: repeat(3, 60mm);
-    grid-template-rows: repeat(3, 88mm);
+    grid-template-columns: repeat(3, 64mm);
+    grid-template-rows: repeat(3, 92mm);
     justify-content: center;
     align-content: start;
-    gap: 4mm;
+    gap: 0;
   }
 
   .lib-card-new {
